@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>seroxen.bio</title>
+    <style>
+        
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121212; 
+            color: #e0e0e0; 
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Animation */
+        @keyframes fallInFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            text-align: center;
+        }
+
+        .content {
+            animation: fallInFadeIn 0.5s ease-out forwards; 
+            padding: 20px;
+            border-radius: 10px;
+            background: #232323; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+
+        header h1 {
+            color: #bb86fc; 
+            text-shadow: 0 2px 4px rgba(0,0,0,0.7); 
+        }
+
+        .coming-soon {
+            display: block; 
+            margin: 20px auto; 
+            background-color: #bb86fc;
+            color: #121212;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 50px; /* Fully rounded corners */
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        .coming-soon:hover {
+            background-color: #9a67ea;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+
+     
+        a {
+            color: #bb86fc;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <header>
+                <h1>seroxen.bio</h1>
+            </header>
+            <button class="coming-soon">Coming Soon...</button>
+        </div>
+    </div>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</html>
+

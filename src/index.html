@@ -1,63 +1,150 @@
-<!-- design inspired by https://www.authkit.com/ -->
-    <link rel="stylesheet" href="src/styles.css">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eclipx - Revolutionary Design</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hubot+Sans&display=swap">
+    <style>
+        @import url('https://fonts.cdnfonts.com/css/hubot-sans');
+        /* Styles from above */
+        *{ box-sizing: border-box; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; scroll-behavior: smooth;}
+        html, body { height: 100%; }
 
-<div class="header">
-  <h2><a href="" target="_blank" rel="noopener noreferrer">RAFA</a></h2>
-  <div class="mid-spot" onclick="document.body.classList.toggle('gold');"></div>
-  <button class="contact-btn">
-    <span class="glow"></span>
-    <span class="contact-btn-content">Contact Us</span>
-  </button>
+        html::-webkit-scrollbar { display: none; }
+        html { -ms-overflow-style: none; scrollbar-width: none; }
 
-  <div class="spotlight">
-    <div></div>
-    <div></div>
-    <div></div>
-  </div>
-</div>
+        body {
+            margin: 0;
+            font-family: 'Hubot-Sans', sans-serif;
+            background: #05060f linear-gradient(0deg,rgba(216,236,248,.06),rgba(152,192,239,.06));
+            font-size: max(calc(var(--_size) * 0.03), 10px);
+            --_factor: min(600px, 80vh);
+            --_size: min(var(--_factor), 80vw);
+        }
+        /* Additional CSS */
+    </style>
+</head>
+<body>
+    <!-- HTML Content -->
+    <div class="header">
+        <h2><a href="" target="_blank" rel="noopener noreferrer">RAFA</a></h2>
+        <div class="mid-spot" onclick="document.body.classList.toggle('gold');"></div>
+        <button class="contact-btn">
+            <span class="glow"></span>
+            <span class="contact-btn-content">Contact Us</span>
+        </button>
 
-<canvas id="particleCanvas"></canvas>
+        <div class="spotlight">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
 
-<div class="accent-lines">
-  <div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-  </div>
-  <div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-  </div>
-</div>
-<div class="heroSubP">
-  <p>Introducing</p>
-</div>
-<div class="hero">
-  <div class="heroT">
-    <h2>Eclipx</h2>
-    <h2>Eclipx</h2>
-  </div>
-</div>
-<p class="heroP">The world's best platform, <br>
-  powered by EclipxOS + React.</p>
-<div class="mountains">
-  <div></div>
-  <div></div>
-  <div></div>
-</div>
-<div class="hero-spacer"></div>
+    <canvas id="particleCanvas"></canvas>
 
-<div class="content-section">
-  <div class="content-acc">
-    <div></div>
-    <div></div>
-  </div>
-  <p class="subt">Revolutionary by design</p>
-  <h3 class="title">Harness. Empower.<br>
-    Unmatched Versatility.</h3>
-  <p class="subp">At the core lies our revolutionary framework, <br>ensuring adaptability across all application architectures.</p>
-</div>
+    <div class="accent-lines">
+        <!-- Accent lines content -->
+    </div>
+    <div class="heroSubP">
+        <p>Introducing</p>
+    </div>
+    <div class="hero">
+        <div class="heroT">
+            <h2>Eclipx</h2>
+            <h2>Eclipx</h2>
+        </div>
+    </div>
+    <p class="heroP">The world's best platform, <br> powered by EclipxOS + React.</p>
+    <div class="mountains">
+        <!-- Mountains content -->
+    </div>
+    <div class="hero-spacer"></div>
+
+    <div class="content-section">
+        <!-- Content section details -->
+    </div>
+
+    <script>
+        // JavaScript for particle canvas
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        let particles = [];
+        let particleCount = calculateParticleCount();
+
+        class Particle {
+            constructor() {
+                this.reset();
+                this.y = Math.random() * canvas.height;
+                this.fadeDelay = Math.random() * 600 + 100;
+                this.fadeStart = Date.now() + this.fadeDelay;
+                this.fadingOut = false;
+            }
+
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.speed = Math.random() / 5 + 0.1;
+                this.opacity = 1;
+                this.fadeDelay = Math.random() * 600 + 100;
+                this.fadeStart = Date.now() + this.fadeDelay;
+                this.fadingOut = false;
+            }
+
+            update() {
+                this.y -= this.speed;
+                if (this.y < 0) {
+                    this.reset();
+                }
+                if (!this.fadingOut && Date.now() > this.fadeStart) {
+                    this.fadingOut = true;
+                }
+                if (this.fadingOut) {
+                    this.opacity -= 0.008;
+                    if (this.opacity <= 0) {
+                        this.reset();
+                    }
+                }
+            }
+
+            draw() {
+                ctx.fillStyle = `rgba(${255 - (Math.random() * 255/2)}, 255, 255, ${this.opacity})`;
+                ctx.fillRect(this.x, this.y, 0.4, Math.random() * 2 + 1);
+            }
+        }
+
+        function calculateParticleCount() {
+            return Math.floor((canvas.width * canvas.height) / 6000);
+        }
+
+        function initParticles() {
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            particleCount = calculateParticleCount();
+            particles = [];
+            initParticles();
+        });
+
+        initParticles();
+        animate();
+    </script>
+</body>
+</html>

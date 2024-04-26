@@ -1,6 +1,47 @@
     <link rel="stylesheet" href="styles.css">
 <link rel="icon" sizes="16x16 32x32 96x96" href="/favicon.png" type="image/png">
+<style>
+/* CSS for image container */
+.image-container {
+    position: fixed;
+    top: 50%;
+    right: 20px; /* Adjust right position as needed */
+    transform: translateY(-50%);
+    z-index: 999; /* Ensure the image is on top of other content */
+}
 
+.image-container img {
+    width: 150px; /* Adjust width as needed */
+    height: auto;
+}
+
+/* CSS for dropdown animation */
+@keyframes dropdown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* CSS for fade-in animation */
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Apply animations to elements */
+.title, .image-container {
+    animation: dropdown 1s ease forwards, fadein 1s ease forwards;
+}
+</style>
 
 <nav>
   <p class="sitename">SeroXen</p>

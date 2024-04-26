@@ -22,6 +22,8 @@
 }
 /* CSS for image container */
 .image-container {
+      font-size: 10rem;
+  font-weight: 700;
     position: fixed;
     top: 50%;
     left: 0; /* Adjusted to position the container on the left edge */
@@ -30,6 +32,8 @@
 }
 
 .image-container img {
+      font-size: 10rem;
+  font-weight: 700;
     width: 200px; /* Adjust width as needed */
     height: auto;
 }
